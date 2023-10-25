@@ -13,7 +13,7 @@ pub struct AppState {
 
 #[actix_web::main]
 async fn main() -> Result<(), sqlx::Error> {
-    let url = "sqlite:sqlite.db";
+    let url = "sqlite:data/sqlite.db";
     let pool = SqlitePoolOptions::new()
         .max_connections(5)
         .connect(url)

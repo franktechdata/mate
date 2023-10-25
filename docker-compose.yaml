@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  mate-backend:
+    build:
+      context: ./mate-backend
+      dockerfile: Dockerfile
+    image: mate-backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./mate-backend/data:/data
