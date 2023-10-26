@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+  labels:
+    app: mate-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mate-backend
+  template:
+    metadata:
+      labels:
+        app: mate-backend
+    spec:
+      containers:
+      - name: mate-backend
+        image: mate-backend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+
