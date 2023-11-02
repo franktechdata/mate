@@ -1,12 +1,36 @@
 version: "3.8"
 
 services:
+  db:
+    container_name: db
+    image: postgres:15  # The image for the PostgreSQL service
+    restart: always  # The container will be restarted automatically if it fails or is stopped
+    environment: # Environment variables to configure the PostgreSQL server
+      - POSTGRES_DB=mates
+      - POSTGRES_USER=franktech
+      - POSTGRES_PASSWORD=irelandorchard
+    volumes: # Named volume to persist database data across container restarts
+      - database_volume:/var/lib/postgresql/data/
+
   mate-backend:
     build:
       context: ./mate-backend
       dockerfile: Dockerfile
     image: mate-backend
     ports:
-      - "8080:8080"
-    volumes:
-      - ./mate-backend/data:/data
+      - "8000:8000"
+    environment: # Environment variables to configure the backend service
+      - DATABASE_HOSTNAME=db
+      - DATABASE_NAME=mates
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=franktech
+      - DATABASE_PASSWORD=irelandorchard
+      - SECRET_KEY=09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=90
+    depends_on: # Defining the service dependency to ensure the correct start-up order
+      - db
+
+volumes:
+  database_volume:  # Definition for the named volume
+
