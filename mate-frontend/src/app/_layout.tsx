@@ -11,5 +11,9 @@ export const unstable_settings = {
 };
 
 export default function Layout() {
-  return <Stack />;
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" />
+    </Stack>
+  );
 }
