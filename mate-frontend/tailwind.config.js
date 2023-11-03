@@ -5,9 +5,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [
-    require("@catppuccin/tailwindcss")({
-      defaultFlavour: "frappe",
-    }),
-  ],
+  plugins: [],
 };
