@@ -1,5 +1,6 @@
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import Hello from "@/components/Hello";
+import { router } from "expo-router";
 
 export default function Page() {
   return (
@@ -9,6 +10,13 @@ export default function Page() {
         <Text className="text-3xl text-gray-700">
           This is the first page of your app.
         </Text>
+        <TouchableOpacity
+          onPress={() => {
+            router.push("/auth/login");
+          }}
+        >
+          <Text>Login</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

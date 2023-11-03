@@ -1,0 +1,67 @@
+# Use a base image with Python 3.12 and Debian Bookworm
+FROM python:3.12-bookworm
+
+# Set the working directory
+WORKDIR /usr/src/app
+
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    build-essential \
+    cmake \
+    gettext \
+    libtool \
+    libtool-bin \
+    autoconf \
+    automake \
+    cmake \
+    g++ \
+    pkg-config \
+    unzip \
+    fzf \
+    fd-find \
+    bat \
+    exa \
+    fonts-font-awesome \
+    xz-utils \
+    ca-certificates \
+    gnupg \
+    software-properties-common \
+    fontconfig \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js
+RUN mkdir -p /etc/apt/keyrings \
+    && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" > /etc/apt/sources.list.d/nodesource.list \
+    && apt-get update \
+    && apt-get install nodejs -y
+
+RUN git clone https://github.com/jirathip-k/dotfiles.git ~/dotfiles
+
+RUN git clone https://github.com/neovim/neovim.git ~/apps/neovim \
+    && cd ~/apps/neovim \ 
+    && make CMAKE_BUILD_TYPE=RelWithDebInfo \
+    && make install
+
+RUN mkdir -p ~/.config \
+    && ln -s ~/dotfiles/nvim ~/.config/nvim
+
+RUN mkdir -p /root/.local/share/fonts \
+    && cd /root/.local/share/fonts \
+    && curl -fLo "Hack.tar.xz" https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Hack.tar.xz \
+    && tar -xf "Hack.tar.xz" --wildcards '*.ttf' \
+    && rm "Hack.tar.xz"
+
+RUN fc-cache -f -v
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Now copy the rest of the application's code
+COPY . .
+
+# Set the default command for the container
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+

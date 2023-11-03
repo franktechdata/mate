@@ -15,10 +15,13 @@ services:
   mate-backend:
     build:
       context: ./mate-backend
-      dockerfile: Dockerfile
-    image: mate-backend
+      dockerfile: Dockerfile.dev
+    image: mate-backend-dev
     ports:
       - "8000:8000"
+      - "12345:12345"
+    volumes:
+      - ./mate-backend:/usr/src/app
     environment: # Environment variables to configure the backend service
       - DATABASE_HOSTNAME=db
       - DATABASE_NAME=mates

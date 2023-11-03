@@ -24,4 +24,4 @@ app.add_middleware(
 # create root path operation
 @app.get("/")
 async def root():
-    return {"message": "Welcome to the Team TAM API Backend"}
+    return {"message": "Welcome to the Team Frank Backend!"}
