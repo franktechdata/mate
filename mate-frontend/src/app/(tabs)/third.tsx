@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { useColorScheme } from "nativewind";
-import BaseView from "@/components/BaseView";
-import StyledTouchableOpacity from "@/components/StyledTouchableOpacity";
+import BaseView from "@comps/BaseView";
+import StyledTouchableOpacity from "@comps/StyledTouchableOpacity";
 
 const SettingScreen = () => {
   const { colorScheme, toggleColorScheme } = useColorScheme();

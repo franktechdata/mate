@@ -1,12 +1,12 @@
-import { router } from "expo-router";
 import BaseView from "@comps/BaseView";
 import StyledTouchableOpacity from "@comps/StyledTouchableOpacity";
+import { router } from "expo-router";
 
-const HomeScreen = () => {
+const Index = () => {
   return (
     <BaseView>
       <StyledTouchableOpacity
-        text="Login"
+        text="enter website"
         onPress={() => {
           router.push("/auth/login");
         }}
@@ -15,4 +15,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default Index;

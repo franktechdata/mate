@@ -1,7 +1,6 @@
-import BaseView from "@/components/BaseView";
-import PickedTime from "@/components/PickedTime";
-import { Text, View } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
+import BaseView from "@comps/BaseView";
+import PickedTime from "@comps/PickedTime";
+import { Text, View, FlatList } from "react-native";
 
 type ItemData = {
   id: string;

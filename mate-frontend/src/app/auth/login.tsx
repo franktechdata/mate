@@ -1,9 +1,9 @@
 import { router } from "expo-router";
 import React, { useState } from "react";
 import { KeyboardAvoidingView } from "react-native";
-import BaseView from "@/components/BaseView";
-import StyledTextInput from "@/components/StyledTextInput";
-import StyledTouchableOpacity from "@/components/StyledTouchableOpacity";
+import BaseView from "@comps/BaseView";
+import StyledTextInput from "@comps/StyledTextInput";
+import StyledTouchableOpacity from "@comps/StyledTouchableOpacity";
 
 export default function LoginPage() {
   const [username, onChangeUsername] = useState<string>("");
