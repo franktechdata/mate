@@ -1,0 +1,3 @@
+[submodule "mate-doc/themes/dark-theme-editor"]
+	path = mate-doc/themes/dark-theme-editor
+	url = https://github.com/JingWangTW/dark-theme-editor.git

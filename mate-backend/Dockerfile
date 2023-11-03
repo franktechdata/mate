@@ -1,5 +1,5 @@
 # Use a specific version of the Python image for reproducible builds
-FROM python:3.9.17-bullseye
+FROM python:3.12-bookworm
 
 # Create a user to run the application (security best practice)
 RUN useradd -m franktech

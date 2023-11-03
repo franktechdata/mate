@@ -1,0 +1,11 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'Mate Documentation'
+theme = 'dark-theme-editor'
+
+[params.globalFrontmatter]
+author = "Franktechdata"
+
+description = "Developer Documentation for Mate"
+
+keywords = "hugo,site,new"
